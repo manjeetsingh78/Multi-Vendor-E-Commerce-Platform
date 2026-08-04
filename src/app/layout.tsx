@@ -1,7 +1,12 @@
 // Next.js
 import type { Metadata } from "next";
 import { Inter, Barlow } from "next/font/google";
+
+// Theme Provider
 import ThemeProviderClient from "../components/ThemeProviderClient";
+
+// Clerk Provider
+import { ClerkProvider, Show, SignInButton, SignUpButton, UserButton } from '@clerk/nextjs'
 
 // Global CSS
 import "./globals.css";
@@ -25,12 +30,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${interFont.className} ${barlowFont.variable}`}>
-        <ThemeProviderClient>
-          {children}
-        </ThemeProviderClient>
-        </body>
-    </html>
+    <ClerkProvider>
+      <html lang="en">
+        <body className={`${interFont.className} ${barlowFont.variable}`}>
+          <ThemeProviderClient>
+            {children}
+          </ThemeProviderClient>
+          </body>
+      </html>
+    </ClerkProvider>
   );
 }
