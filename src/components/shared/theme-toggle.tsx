@@ -1,0 +1,27 @@
+"use client";
+import { MoonIcon, SunIcon } from "lucide-react";
+import { Button } from "../ui/button";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "../ui/dropdown-menu";
+import { useTheme } from "next-themes";
+
+export default function ThemeToggle(){
+    const { setTheme } = useTheme();
+    return (
+        <DropdownMenu>
+            <DropdownMenuTrigger>
+                <div className="w-10 h-10 rounded-full inline-flex items-center justify-center border bg-background relative">
+
+                <SunIcon className="h-[1.4rem] w-[1.4rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0"></SunIcon>
+                <MoonIcon className="absolute h-[1.4rem] w-[1.4rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100 text-white dark:text-white"></MoonIcon>
+                <span className="sr-only">Toggle theme</span>
+
+                </div>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+                <DropdownMenuItem onClick={()=>setTheme('light')}>Light</DropdownMenuItem>
+                <DropdownMenuItem onClick={()=>setTheme('dark')}>Dark</DropdownMenuItem>
+                <DropdownMenuItem onClick={()=>setTheme('system')}>System</DropdownMenuItem>
+            </DropdownMenuContent>
+        </DropdownMenu>
+    )
+}
